@@ -6,32 +6,119 @@
   <script id="challenge">
     // 👉 CHALLENGE 1
     function profileActivation(profile, reason) {
-      wqwq
+      if(profile.active === true && reason){
+        profile.active = false;
+        profile.reason = reason
+       return profile
+      }else if(profile.active === false){
+        profile.active = true;
+        delete profile.reason;
+        return profile;
+      }else{
+        return "confirm status manually"
+      }
+
     }
 
     // 👉 CHALLENGE 2
     function mineSweeper(grid, x, y) {
+      let mySpot
 
+      
+      for(i= 0; i < grid.length ;i++){
+        for(j = 0; j < grid.length ; j++){
+          if(i === x - 1 && j === y - 1){
+          mySpot = grid[j][i]
+          break
+          }
+        }
+      }
+      
+      if(x > 3 || y > 3 || y < 1 || x < 1){
+        return "invalid coordinates"
+      }else if(mySpot === "🟥"){
+        return "🟥 💀" 
+        
+      }else if(mySpot === "🟦"){
+        return "🟦 🥳"
+       
+      }
+      
     }
 
     // 👉 CHALLENGE 3
     function booleanize(obj) {
-
+      let myObj = obj
+      for(let property in myObj){
+        if(property.length > 9){
+          return "shorten all prop names to 9 chars or less"
+        }if(myObj[property] === 0){
+          myObj[property]  = false
+        }else if(myObj[property] === 1){
+          myObj[property] = true
+        }else if(myObj[property]=== null)
+           delete myObj[property]
+      }
+        
+             
+      
+      return myObj
     }
 
     // 👉 CHALLENGE 4
     function scrub(text, forbidden) {
-
-    }
+      textWords = text.split(" ")
+      let letters
+      let newWord
+      for(word in textWords){
+        for(forbWord in forbidden){
+        
+          if(textWords[word] === forbidden[forbWord]){
+            
+            letters = textWords[word].split("")
+            
+            for(letter in letters){
+              letters[letter] = 'x'
+            }
+            
+           textWords[word] = letters.join("")
+           
+          }
+        }
+        
+        
+        }
+        return textWords.join(" ")
+      }
 
     // 👉 CHALLENGE 5 (bonus, NOT graded)
     function normalizePhoneNumber(num) {
-
+      newNum = num.split('')
+      newNum[2] = newNum[2] + ') '
+      newNum[0] = '(' + newNum[0]
+      newNum[5] = newNum[5] + '-'
+      return newNum.join('')
     }
 
     // 👉 CHALLENGE 6 (bonus, NOT graded)
     function diceRolls() {
-
+      function getRandomInt(max) {
+  return Math.floor(Math.random() * max);
+}
+      let rolls = 0
+      let sixRoll = 0
+      let myNum
+      while(sixRoll < 4){
+        rolls++
+        myNum = getRandomInt(7)
+      if(myNum === 6){
+      sixRoll++
+        }
+  
+      }
+     
+     return rolls
+      
     }
 
     // 🧪 DO NOT make any changes below this line ===================
